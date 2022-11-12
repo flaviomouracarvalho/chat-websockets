@@ -16,3 +16,12 @@ http.listen(PORTA, function (){
 app.get('/', function(req, resp){
     resp.sendFile(__dirname + '/index.html')
 })
+
+serverSocket.on('connection', function (socket){
+    console.log('Cliente conectado: ' + socket.id)
+
+    socket.on('chat msg', function (msg){
+        console.log(`Msg recebida de ${socket.id}: ${msg}`)
+
+    })
+})
